@@ -1,5 +1,5 @@
-# Déploiement automatique sur GitHub Pages
-# À chaque "git push" sur la branche main, GitHub construit le projet
+# DÃ©ploiement automatique sur GitHub Pages
+# Ã€ chaque "git push" sur la branche main, GitHub construit le projet
 # (npm run build) et publie le dossier dist/.
 name: Deploy to GitHub Pages
 
@@ -24,29 +24,29 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v4
+      - name: RÃ©cupÃ©rer le code
+        uses: actions/checkout@v7
 
       - name: Installer Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
 
-      - name: Installer les dépendances
+      - name: Installer les dÃ©pendances
         run: npm ci
 
       - name: Construire le projet
         run: npm run build
 
       - name: Configurer GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Envoyer le dossier dist
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
       - name: Publier sur GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
